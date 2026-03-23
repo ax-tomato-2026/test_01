@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성장 일지 (Growth Journal)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header / Navigation -->
+        <header class="navbar">
+            <h1 class="logo">Growth Journal</h1>
+            <nav>
+                <button class="nav-btn active" data-target="dashboard">대시보드</button>
+                <button class="nav-btn" data-target="record">오늘의 기록</button>
+                <button class="nav-btn" data-target="history">히스토리</button>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view-section active">
+                <header class="section-header">
+                    <h2>나의 성장 대시보드</h2>
+                    <p class="subtitle" id="today-date-display"></p>
+                </header>
+                
+                <div class="stats-tabs">
+                    <button class="tab-btn active" data-tab="weekly">주간 성취도</button>
+                    <button class="tab-btn" data-tab="monthly">월간 캘린더</button>
+                    <button class="tab-btn" data-tab="yearly">연간 잔디</button>
+                </div>
+                
+                <div class="stats-content">
+                    <!-- Weekly Stats -->
+                    <div id="stat-weekly" class="stat-panel active">
+                        <div class="stat-cards">
+                            <div class="stat-card">
+                                <h3>📖 독서</h3>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill" id="weekly-reading-bar"></div></div>
+                                <p id="weekly-reading-text" class="stat-text">0일 성공 (0%)</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>💪 운동</h3>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill exercise-color" id="weekly-exercise-bar"></div></div>
+                                <p id="weekly-exercise-text" class="stat-text">0일 성공 (0%)</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>✍️ 공부</h3>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill study-color" id="weekly-study-bar"></div></div>
+                                <p id="weekly-study-text" class="stat-text">0일 성공 (0%)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Monthly Stats -->
+                    <div id="stat-monthly" class="stat-panel">
+                        <div class="stat-card calendar-container">
+                            <h3 id="calendar-month-year" class="cal-title"></h3>
+                            <div class="calendar-grid" id="calendar-grid"></div>
+                            <div class="cal-legend">
+                                <span class="legend-item"><span class="l-box success"></span> 모두 성공</span>
+                                <span class="legend-item"><span class="l-box partial"></span> 부분 성공</span>
+                                <span class="legend-item"><span class="l-box fail"></span> 실패 포함</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Yearly Stats -->
+                    <div id="stat-yearly" class="stat-panel">
+                        <div class="stat-card heatmap-container">
+                            <h3>최근 1년 잔디</h3>
+                            <div class="heatmap-grid" id="heatmap-grid"></div>
+                            <div class="heat-legend">
+                                <span>Less</span>
+                                <div class="heat-cell"></div>
+                                <div class="heat-cell level-1"></div>
+                                <div class="heat-cell level-2"></div>
+                                <div class="heat-cell level-3"></div>
+                                <div class="heat-cell level-4"></div>
+                                <span>More</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Record View -->
+            <section id="record" class="view-section">
+                <header class="section-header">
+                    <h2>오늘의 기록</h2>
+                    <p class="subtitle">오늘 하루의 의미있었던 성장을 기록해주세요.</p>
+                </header>
+                <div class="record-container">
+                    <div id="record-cards"></div>
+                    <button id="save-record-btn" class="primary-btn">저장하기</button>
+                </div>
+            </section>
+
+            <!-- History View -->
+            <section id="history" class="view-section">
+                <header class="section-header">
+                    <h2>히스토리</h2>
+                    <p class="subtitle">과거의 기록을 돌아보며 개선점을 발견하세요.</p>
+                </header>
+                <div class="history-list" id="history-list">
+                    <!-- History items will be dynamically inserted here -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
